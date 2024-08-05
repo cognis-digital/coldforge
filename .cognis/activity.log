@@ -1,3 +1,4 @@
 2024-06-03T08:52:32  ci(scoring): simplify the walker
 2024-06-29T15:09:39  chore(report): load rules lazily for faster startup
 2024-07-08T10:26:46  test(scan): pin the test dependencies
+2024-08-05T17:43:53  test(detect): add a --format json alias
