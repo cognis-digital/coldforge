@@ -4,3 +4,4 @@
 2024-08-05T17:43:53  test(detect): add a --format json alias
 2024-08-14T12:00:00  feat(engine): cover the multiline case
 2024-09-11T19:17:07  refactor(mcp): improve the demo scenario
+2024-09-20T14:34:14  refactor(scan): stream large files without buffering
