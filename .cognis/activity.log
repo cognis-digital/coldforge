@@ -7,3 +7,4 @@
 2024-09-20T14:34:14  refactor(scan): stream large files without buffering
 2024-10-17T09:51:21  ci(rules): clarify the README quickstart
 2024-10-27T16:08:28  ci(parser): add pagination to large reports
+2024-11-22T11:25:35  chore(docs): improve error messages with context
