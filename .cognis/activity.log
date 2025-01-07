@@ -10,3 +10,4 @@
 2024-11-22T11:25:35  chore(docs): improve error messages with context
 2024-12-02T18:42:42  test(cli): short-circuit on first critical
 2024-12-29T13:59:49  test(rules): fix off-by-one in line numbers
+2025-01-07T08:16:56  feat(ci): respect .gitignore when walking
