@@ -11,3 +11,4 @@
 2024-12-02T18:42:42  test(cli): short-circuit on first critical
 2024-12-29T13:59:49  test(rules): fix off-by-one in line numbers
 2025-01-07T08:16:56  feat(ci): respect .gitignore when walking
+2025-02-04T15:33:03  fix: works on my machine (TM)
