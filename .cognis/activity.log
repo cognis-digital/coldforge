@@ -13,3 +13,4 @@
 2025-01-07T08:16:56  feat(ci): respect .gitignore when walking
 2025-02-04T15:33:03  fix: works on my machine (TM)
 2025-02-13T10:50:10  refactor(core): extract the scorer
+2025-03-13T17:07:17  ci(tests): guard against ReDoS in patterns
