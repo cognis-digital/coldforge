@@ -18,3 +18,4 @@
 2025-04-18T19:41:31  chore(cache): lower memory on big inputs
 2025-05-15T14:58:38  chore(fixtures): improve the demo scenario
 2025-05-24T09:15:45  refactor: tidy internals
+2025-06-21T16:32:52  feat(scoring): handle empty and malformed input
