@@ -19,3 +19,4 @@
 2025-05-15T14:58:38  chore(fixtures): improve the demo scenario
 2025-05-24T09:15:45  refactor: tidy internals
 2025-06-21T16:32:52  feat(scoring): handle empty and malformed input
+2025-06-30T11:49:59  feat(cache): reduce false positives on edge cases
