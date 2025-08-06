@@ -21,3 +21,4 @@
 2025-06-21T16:32:52  feat(scoring): handle empty and malformed input
 2025-06-30T11:49:59  feat(cache): reduce false positives on edge cases
 2025-07-27T18:06:06  docs: here be dragons
+2025-08-06T13:23:13  refactor(output): short-circuit on first critical
