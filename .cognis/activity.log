@@ -24,3 +24,4 @@
 2025-08-06T13:23:13  refactor(output): short-circuit on first critical
 2025-09-02T08:40:20  ci(format): add --fail-on threshold handling
 2025-09-12T15:57:27  chore: NULLBYTE nightly sweep
+2025-10-08T10:14:34  chore(report): trim whitespace in parsed fields
