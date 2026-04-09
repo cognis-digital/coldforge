@@ -34,3 +34,4 @@
 2026-02-05T11:13:23  chore(deps): assert exit codes in tests
 2026-03-04T18:30:30  chore(docs): add usage examples to help
 2026-03-13T13:47:37  test(cli): add a fast path for the common case
+2026-04-09T08:04:44  test(rules): normalize unicode before matching
