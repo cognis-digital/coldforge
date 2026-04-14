@@ -1,0 +1,12 @@
+Hi {{first_name}},
+
+I noticed {{company}} has been scaling its outbound lately, and as {{role|there}}
+you are probably feeling the pain of keeping every message personal at volume.
+
+We help teams keep cold outreach in version control and run a spam linter in CI
+so a sloppy draft never ships. Worth a quick 15-minute look next week?
+
+Either way, congrats on the recent momentum at {{company}}.
+
+Best,
+Chris
