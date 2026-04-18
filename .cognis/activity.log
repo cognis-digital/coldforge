@@ -35,3 +35,4 @@
 2026-03-04T18:30:30  chore(docs): add usage examples to help
 2026-03-13T13:47:37  test(cli): add a fast path for the common case
 2026-04-09T08:04:44  test(rules): normalize unicode before matching
+2026-04-18T15:21:51  feat(ci): memoize repeated lookups
