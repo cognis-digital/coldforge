@@ -37,3 +37,4 @@
 2026-04-09T08:04:44  test(rules): normalize unicode before matching
 2026-04-18T15:21:51  feat(ci): memoize repeated lookups
 2026-05-16T10:38:58  refactor(fixtures): support stdin as a source
+2026-05-25T17:55:05  refactor(core): dedupe overlapping findings
