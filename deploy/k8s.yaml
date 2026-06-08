@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: coldforge, labels: { app: coldforge } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: coldforge } }
+  template:
+    metadata: { labels: { app: coldforge } }
+    spec:
+      containers:
+        - name: coldforge
+          image: ghcr.io/cognis-digital/coldforge:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: coldforge }
+spec:
+  selector: { app: coldforge }
+  ports: [{ port: 80, targetPort: 8000 }]
