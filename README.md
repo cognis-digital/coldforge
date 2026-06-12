@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-coldforge
+pip install "git+https://github.com/cognis-digital/coldforge.git"
 coldforge scan .            # → prioritized findings in seconds
 ```
 
@@ -51,7 +51,7 @@ Outreach-as-code: templates live in the repo, the spam-linter runs in CI, and yo
 ## Quick start
 
 ```bash
-pip install cognis-coldforge
+pip install "git+https://github.com/cognis-digital/coldforge.git"
 coldforge --version
 coldforge scan .                       # scan current project
 coldforge scan . --format json         # machine-readable
