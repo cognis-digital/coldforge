@@ -20,6 +20,42 @@ pip install cognis-coldforge
 coldforge scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+1. **Install:**
+
+   ```bash
+   pip install -e .
+   ```
+
+2. **Lint a single draft** (no CSV needed) with the `lint` subcommand to check a template/body for spam-trigger issues:
+
+   ```bash
+   coldforge lint --template body.txt
+   ```
+
+3. **Render + lint against your contacts** with the `render` subcommand — it substitutes each contact's fields into the template and scores every resulting message:
+
+   ```bash
+   coldforge render --template body.txt --contacts contacts.csv
+   ```
+
+   Add `--subject subject.txt` to render a subject line too.
+
+4. **Read the result.** The table shows each `email`, spam `score`, `grade`, any `missing` fields, and the worst `top_issue`. Use `--format json` for the full per-contact payload. Set `--max-score` to define the gate: the process **exits 2 if any message exceeds it** (and 3 on missing required fields under `--strict`):
+
+   ```bash
+   coldforge render -t body.txt -c contacts.csv --max-score 25 --format json
+   ```
+
+5. **Use it in CI** — block a campaign whose copy scores too spammy:
+
+   ```bash
+   coldforge render -t body.txt -c contacts.csv --max-score 25 --format json || {
+     echo "Message(s) over spam threshold"; exit 1; }
+   ```
+
+
 ## Contents
 
 - [Why coldforge?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
