@@ -14,9 +14,13 @@ Two jobs, both done for real:
 from __future__ import annotations
 
 import csv
+import json
 import re
 from dataclasses import dataclass, field, asdict
 from typing import Any, Dict, Iterable, List, Optional, Tuple
+
+TOOL_NAME = "coldforge"
+TOOL_VERSION = "0.1.0"
 
 # ---------------------------------------------------------------------------
 # Data models
@@ -84,17 +88,17 @@ def load_contacts(path: str) -> List[Contact]:
         reader = csv.DictReader(fh)
         if reader.fieldnames is None:
             raise ValueError("CSV has no header row")
-        headers = [h.strip() for h in reader.fieldnames]
+        headers = [h.strip() for h in reader.fieldnames if h]
         if "email" not in headers:
             raise ValueError(
                 "contacts CSV must have an 'email' column; got: "
-                + ", ".join(headers)
+                + (", ".join(headers) if headers else "(empty header)")
             )
         contacts: List[Contact] = []
         for raw in reader:
             row = {(k.strip() if k else k): (v.strip() if v else "")
                    for k, v in raw.items()}
-            email = row.get("email", "")
+            email = row.get("email", "").strip()
             if not email:
                 continue
             fields = {k: v for k, v in row.items() if k and k != "email"}
@@ -212,6 +216,17 @@ def _grade(score: int) -> str:
     return "F"
 
 
+def scan(target: str) -> List[Dict[str, Any]]:
+    """Minimal scan stub: lint a single text string and return findings."""
+    report = lint_text(target)
+    return [report.to_dict()]
+
+
+def to_json(findings: List[Dict[str, Any]]) -> str:
+    """Serialise scan findings to a JSON string."""
+    return json.dumps(findings, indent=2)
+
+
 def lint_text(text: str, template: Optional[str] = None) -> SpamReport:
     """Score a piece of outreach text for spamminess (0=clean, 100=very spammy).
 
@@ -219,6 +234,8 @@ def lint_text(text: str, template: Optional[str] = None) -> SpamReport:
     is personalized (uses a known greeting field) and whether unresolved
     ``{{placeholders}}`` leaked into the rendered output.
     """
+    if not isinstance(text, str):
+        raise TypeError(f"lint_text expects str, got {type(text).__name__!r}")
     findings: List[SpamFinding] = []
     score = 0
     lower = text.lower()

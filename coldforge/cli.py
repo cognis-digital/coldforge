@@ -41,8 +41,15 @@ from .core import (
 
 
 def _read(path: str) -> str:
-    with open(path, encoding="utf-8") as fh:
-        return fh.read()
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return fh.read()
+    except FileNotFoundError:
+        raise OSError(f"file not found: {path}")
+    except PermissionError:
+        raise OSError(f"permission denied reading: {path}")
+    except UnicodeDecodeError as exc:
+        raise OSError(f"could not decode {path} as UTF-8: {exc}")
 
 
 def _print_table(rows: List[dict]) -> None:
@@ -187,9 +194,16 @@ def main(argv: Optional[List[str]] = None) -> int:
     if not getattr(args, "command", None):
         parser.print_help()
         return 1
+    if hasattr(args, "max_score"):
+        if args.max_score < 0 or args.max_score > 100:
+            print(
+                f"error: --max-score must be between 0 and 100, got {args.max_score}",
+                file=sys.stderr,
+            )
+            return 1
     try:
         return args.func(args)
-    except (OSError, ValueError) as exc:
+    except (OSError, ValueError, UnicodeDecodeError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
 

@@ -1,4 +1,4 @@
-"""Smoke tests for COLDFORGE — import the core, run it on the demo, assert real behavior."""
+"""Smoke tests for COLDFORGE — import the core, run it on the demo, assert real behavior."""  # noqa: E501
 import json
 import os
 import subprocess
