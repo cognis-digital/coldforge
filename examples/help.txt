@@ -1,0 +1,41 @@
+$ coldforge-emit --help
+
+usage: coldforge [-h] [--version] [--format {table,json}] {render,lint} ...
+
+Outreach-as-code: render personalized cold emails from a template + contacts CSV, with a CI spam linter.
+
+positional arguments:
+  {render,lint}
+    render              render template over a contacts CSV + lint
+    lint                lint a single template/draft file
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json}
+                        output format (default: table)
+
+COLDFORGE command-line interface.
+
+Subcommands
+-----------
+  render   Render a template against a contacts CSV and lint each message.
+  lint     Lint a single template/text file (no CSV needed).
+
+Examples
+--------
+  # Render + lint every contact, pretty table
+  coldforge render --template body.txt --contacts contacts.csv
+
+  # CI gate: fail (exit 2) if any message scores above 25
+  coldforge render -t body.txt -c contacts.csv --max-score 25 --format json
+
+  # Just lint a draft
+  coldforge lint --template body.txt
+
+Exit codes
+----------
+  0  success, nothing over threshold
+  2  one or more messages exceeded --max-score (CI gate failure)
+  3  rendering had missing required fields and --strict was set
+  1  usage / IO error

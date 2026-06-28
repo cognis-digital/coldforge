@@ -20,6 +20,78 @@ pip install cognis-coldforge
 coldforge scan .            # → prioritized findings in seconds
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ coldforge-emit --version
+coldforge 0.1.0
+```
+
+```console
+$ coldforge-emit --help
+usage: coldforge [-h] [--version] [--format {table,json}] {render,lint} ...
+
+Outreach-as-code: render personalized cold emails from a template + contacts CSV, with a CI spam linter.
+
+positional arguments:
+  {render,lint}
+    render              render template over a contacts CSV + lint
+    lint                lint a single template/draft file
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json}
+                        output format (default: table)
+
+COLDFORGE command-line interface.
+
+Subcommands
+-----------
+  render   Render a template against a contacts CSV and lint each message.
+  lint     Lint a single template/text file (no CSV needed).
+
+Examples
+--------
+  # Render + lint every contact, pretty table
+  coldforge render --template body.txt --contacts contacts.csv
+
+  # CI gate: fail (exit 2) if any message scores above 25
+  coldforge render -t body.txt -c contacts.csv --max-score 25 --format json
+
+  # Just lint a draft
+  coldforge lint --template body.txt
+
+Exit codes
+----------
+  0  success, nothing over threshold
+  2  one or more messages exceeded --max-score (CI gate failure)
+  3  rendering had missing required fields and --strict was set
+  1  usage / IO error
+```
+
+> Blocks above are real `coldforge` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+  "finding": {
+    "id": "1234567890",
+    "title": "Suspicious Network Activity",
+    "description": "Potential malicious activity detected on network segment 192.168.1.0/24",
+    "created_by": "John Doe",
+    "created_at": "2023-02-15T14:30:00Z"
+  }
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. **Install:**
